@@ -46,7 +46,7 @@ def main() -> None:
         server = await asyncio.start_server(
             proxy.handle_client,
             host=pcfg["listen_host"],
-            port=pcfg["listen_port"],
+            port=8883,
             ssl=server_ssl_ctx,
         )
         stop = asyncio.Event()
