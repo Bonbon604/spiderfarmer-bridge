@@ -60,7 +60,7 @@ def main() -> None:
         # SF-App-side changes the user makes without HA interaction.
         poll_task = asyncio.create_task(proxy.config_poll_loop())
 
-        logger.info("Proxy listening on %s:%s", pcfg["listen_host"], pcfg["listen_port"])
+        logger.info("Proxy listening on %s:%s", pcfg["listen_host"], 8883)
         async with server:
             await stop.wait()
         poll_task.cancel()
