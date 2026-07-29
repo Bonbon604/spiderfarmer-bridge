@@ -42,13 +42,14 @@ def main() -> None:
     server_ssl_ctx = proxy.build_server_ssl_ctx()
     pcfg = config["proxy"]
 
-    async def run() -> None:
+        async def run() -> None:
         server = await asyncio.start_server(
             proxy.handle_client,
             host=pcfg["listen_host"],
-            port=pcfg["listen_port"],
+            port=8883,  # Force port 8883 instead of pcfg["listen_port"]
             ssl=server_ssl_ctx,
         )
+
         stop = asyncio.Event()
         loop = asyncio.get_event_loop()
         loop.add_signal_handler(signal.SIGTERM, stop.set)
